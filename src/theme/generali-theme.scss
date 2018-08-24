@@ -1,0 +1,22 @@
+@import '~@angular/material/theming'; // Importación del archivo de temas de Material, el core.
+@import 'palette';                    // Importación del archivo de paletas
+@import 'fonts';                      // Importación del archivo de fuentes
+
+// Definimos una configuración de tipografía custom que sobreescribirá la actual
+$custom-typography: mat-typography-config(
+  $font-family: 'Helvetica-Neue'
+);
+
+// Sobrescribimos la tipografía en el core CSS
+@include mat-core($custom-typography);
+// Definimos las paletas para nuestro tema usando paletas de Material Design
+// Los nombres de estas variables $md-av... son los que tenemos en el palettes.scss
+$av-primary: mat-palette($md-avprimary);
+$av-accent: mat-palette($md-avaccent);
+$av-warn: mat-palette($md-avwarn);
+
+// Creamos el objeto theme (un Sass map que contiene todas las paletas)
+$app-theme: mat-light-theme($av-primary, $av-accent, $av-warn);
+
+// Incluimos el objeto de temas para el core y cada componente utilizado en la app
+@include angular-material-theme($app-theme);
